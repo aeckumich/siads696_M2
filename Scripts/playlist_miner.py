@@ -9,10 +9,12 @@ import requests
 
 def search_for_playlist(q: str, number: int = 10) -> list:
     """
-    This function queries Spotify's APIs for a query and returns a list of IDs.
+    This function uses a query string to search Spotify's APIs
+    for playlists that match and returns a list of playlist information.
     :param q: The query string.
     :param number: The maximum number of results to return.
-    :return playlists: A list of play list IDs.
+    :return playlists: A list of playlist information in a tuple (playlist id, playlist name,
+    playlist description).
     """
 
     access_token = get_spotify_creds()
@@ -36,7 +38,7 @@ def search_for_playlist(q: str, number: int = 10) -> list:
         id = playlist["id"]
         name = playlist["name"]
 
-        playlists.append((description, id, name))
+        playlists.append((id, name, description,))
 
     return playlists
 
