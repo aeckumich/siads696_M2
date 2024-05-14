@@ -1,6 +1,5 @@
 """
-This script takes goes through a list of known spotify playlists, and creates a
-CSV file with track id, playlist id, and playlist name
+This script takes goes through a list of known spotify playlists.
 """
 
 from get_spotify_creds import get_spotify_creds
@@ -14,7 +13,7 @@ def search_for_playlist(q: str, number: int = 10) -> list:
     :param q: The query string.
     :param number: The maximum number of results to return.
     :return playlists: A list of playlist information in a tuple (playlist id, playlist name,
-    playlist description).
+    playlist description, total).
     """
 
     access_token = get_spotify_creds()
@@ -37,8 +36,9 @@ def search_for_playlist(q: str, number: int = 10) -> list:
         description = playlist["description"]
         id = playlist["id"]
         name = playlist["name"]
+        total = playlist["tracks"]["total"]
 
-        playlists.append((id, name, description,))
+        playlists.append((id, name, description,total))
 
     return playlists
 
