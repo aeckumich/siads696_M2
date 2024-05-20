@@ -40,6 +40,8 @@ def search_for_playlist(q: str, number: int = 10) -> list:
 
         playlists.append((id, name, description,total))
 
+
+
     return playlists
 
 

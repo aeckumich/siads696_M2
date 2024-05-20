@@ -26,21 +26,35 @@ def get_song_ids(playlist_id:str, limit:int = 10) -> list:
     return song_ids
 
 def get_track_info(song_id:str):
-    url = f"https://api.spotify.com/v1/tracks/{song_id}"
+    song_url = f"https://api.spotify.com/v1/tracks/{song_id}"
     access_token = get_spotify_creds()
     headers = {"Authorization": "Bearer " + access_token}
-    response = requests.get(url, headers=headers).json()
+    response = requests.get(song_url, headers=headers).json()
 
-    print(response)
     track_name = response["name"]
     artist_name = response["artists"][0]["name"]
     album_name = response["album"]["name"]
     track_popularity = response["popularity"]
 
-    """
-    I'll finish this up tomorrow, but this looks like the info we can get from the track end point. 
-    There's more relevant information in audio features endpoint. 
-    """"# print(track_name, artist_name, album_name)
+    song_feat_url = f"https://api.spotify.com/v1/audio-features/{song_id}"
+    response = requests.get(song_feat_url, headers=headers).json()
+
+    danceability = response["danceability"]
+    energy = response["energy"]
+    key = response["key"]
+    loudness = response["loudness"]
+    mode = response["mode"]
+    speechiness = response["speechiness"]
+    acousticness = response["acousticenss"]
+    instrumentalness = response["instrumentalness"]
+    liveness = response["liveness"]
+    valence = response["valence"]
+    tempo = response["tempo"]
+    duration = response["duration_ms"]
+    time_signature = response["time_signature"]
+
+    return [track_name, artist_name, album_name, track_popularity, danceability, energy, key, loudness,
+            mode, speechiness, acousticness, instrumentalness, liveness, valence, duration, tempo, time_signature]
 
 
 
