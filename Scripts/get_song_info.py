@@ -45,7 +45,7 @@ def get_track_info(song_id:str):
     loudness = response["loudness"]
     mode = response["mode"]
     speechiness = response["speechiness"]
-    acousticness = response["acousticenss"]
+    acousticness = response["acousticness"]
     instrumentalness = response["instrumentalness"]
     liveness = response["liveness"]
     valence = response["valence"]
@@ -63,7 +63,8 @@ def get_track_info(song_id:str):
 
 if __name__ == '__main__':
     song_ids = get_song_ids(test_id, limit=50)
-    get_track_info(song_ids[6])
+    for id in song_ids:
+        print(get_track_info(id)[0])
 
 
 

@@ -6,7 +6,7 @@ from get_spotify_creds import get_spotify_creds
 import requests
 
 
-def search_for_playlist(q: str, number: int = 10) -> list:
+def search_for_playlist(q: str, number: int = 10, access_token:str=None) -> list:
     """
     This function uses a query string to search Spotify's APIs
     for playlists that match and returns a list of playlist information.
