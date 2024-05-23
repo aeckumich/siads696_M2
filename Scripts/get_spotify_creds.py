@@ -24,3 +24,7 @@ def get_spotify_creds():
     access_token = response["access_token"]
 
     return access_token
+
+if __name__ == "__main__":
+    access_token = get_spotify_creds()
+    print(access_token)
